@@ -1,0 +1,39 @@
+#!/bin/bash
+
+echo "Дата: $(date '+%d-%m-%Y')"
+echo "Имя учетной записи: " $(whoami)
+echo "Доменное имя ПК: " $(hostname)
+
+cpu=$(lscpu)
+echo "Процессор: "
+#1
+echo $cpu | awk '{print "  •  " $35 " " $36 " " $37 " " $38 " " $39 " "}'
+#2
+echo $cpu | awk '{print "  •  " $1 " " $2}'
+#3
+echo $cpu | awk '{print "  •  " $40 " " $41 " " $42}'
+#4
+echo $cpu | awk '{print "  •  " $11 " " $12}'
+#5
+echo $cpu | awk '{print "  •  " $17 " " $18 " " $19 " " $20}'
+
+ram=$(free)
+echo "Оперативная память: "
+echo $ram | awk '{print "  •  " $1 ": " $8}'
+echo $ram | awk '{print "  •  " $3 ": " $10}'
+
+disk=$(df -h)
+echo "Жесткий диск: "
+echo $disk | awk '{print "  •  " "Всего - " $33}'
+echo $disk | awk '{print "  •  " "Доступно - " $41}'
+echo $disk | awk '{print "  •  " "Смонтировано в корневую директорию / -  " $40}'
+echo $ram | awk '{print "  •  " "SWAP всего " $15}'
+echo $ram | awk '{print "  •  " "SWAP доступно " $17}'
+
+network=$(ifconfig)
+
+echo "Сетевые интерфейсы: "
+echo "  •  Количество сетевых интерфейсов - 2"
+echo "| №|" "Имя сетевого интерфейса|" "МАС адрес                  |" "IP адрес        |" "Скорость соединения"
+echo $network | awk  '{print "| 1| " $81"                  | "  $82 "          | "  $58 "    |  "}' 
+echo $network | awk  '{print "| 2| " $1 "                    | " $15 " " $18 "           | " $6 "       |" }'
